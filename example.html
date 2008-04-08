@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.pack.js"></script>    
+    <script type="text/javascript" src="jquery.db.js"></script>    
+    <script type="text/javascript">
+      $(function() {
+        console.debug(
+          $('.users')
+            .where('.id:eq(1)')
+            .select('.name')
+        );
+        console.debug(
+          $('.users')
+            .where('.name:contains(a)')
+              .and('.name:contains(c)')
+            .select('*')
+        );
+        console.debug(
+          $('.users')
+            .join('.photos')
+            .where('.photos.user_id:eq(.users.id)')
+              .and('.users.id:eq(1)')
+            .select('.photos.url')
+                    );
+      });
+    </script>
+  </head>
+  <body>
+    <table class="users">
+      <tbody>
+        <tr>
+          <td class="id">1</td>
+          <td class="name">amy</td>
+        </tr> 
+        <tr>
+          <td class="id">2</td>
+          <td class="name">bob</td>   
+        </tr>
+        <tr>
+          <td class="id">3</td>
+          <td class="name">carl</td>
+        </tr>
+      </tbody>  
+    </table>
+    <table class="photos">
+      <tbody>
+        <tr>
+          <td class="id">1</td>
+          <td class="user_id">1</td>
+          <td class="url">http://www.example.com/foo.png</td>
+        </tr> 
+        <tr>
+          <td class="id">2</td>
+          <td class="user_id">2</td>   
+          <td class="url">http://www.example.com/bar.png</td>
+        </tr>
+        <tr>
+          <td class="id">3</td>
+          <td class="user_id">3</td>
+          <td class="url">http://www.example.com/baz.png</td>
+        </tr>
+      </tbody>  
+    </table>
+  </body>
+</html>
